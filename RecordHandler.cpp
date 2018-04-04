@@ -80,24 +80,55 @@ Record* csvRecordParser(string recordStateAsCSV) {
     
     removeSubstrings(parts[5], pattern);
 	
-	if(latitude >= 0)
-		latitude += stod(parts[5]) / getRightValue(digitsOfNumber(stod(parts[5])));
-	else {
+    int floatingPointerStringPart = 0; // to handle the first zero like 0.0654
+    int digitsOfStringNumber = 0;
+
+	if(latitude >= 0) {
+		floatingPointerStringPart = parts[5].size(); 
+		digitsOfStringNumber = digitsOfNumber(stod(parts[5]));
+		if(floatingPointerStringPart == digitsOfStringNumber)
+			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber);
+		else
+			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber + 1);
+	} else {
 		latitude = abs(latitude);
-		latitude += stod(parts[5]) / getRightValue(digitsOfNumber(stod(parts[5])));
+		
+		floatingPointerStringPart = parts[5].size(); 
+		digitsOfStringNumber = digitsOfNumber(stod(parts[5]));
+		if(floatingPointerStringPart == digitsOfStringNumber)
+			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber);
+		else
+			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber + 1);
+
 		latitude = latitude * (-1); 
 	}
+
+	floatingPointerStringPart = 0;
+    digitsOfStringNumber = 0;
 
 	removeSubstrings(parts[6], pattern);
 	double longitude = stod(parts[6]);
 
 	removeSubstrings(parts[7], pattern);
 
-	if(longitude >= 0)
-		longitude += stod(parts[7]) / getRightValue(digitsOfNumber(stod(parts[7])));
+	if(longitude >= 0) {
+		floatingPointerStringPart = parts[7].size(); 
+		digitsOfStringNumber = digitsOfNumber(stod(parts[7]));
+		if(floatingPointerStringPart == digitsOfStringNumber)
+			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber);
+		else
+			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber + 1);
+	}
 	else {
 		longitude = abs(longitude);
-		longitude += stod(parts[7]) / getRightValue(digitsOfNumber(stod(parts[7])));
+
+		floatingPointerStringPart = parts[7].size(); 
+		digitsOfStringNumber = digitsOfNumber(stod(parts[7]));
+		if(floatingPointerStringPart == digitsOfStringNumber)
+			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber);
+		else
+			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber + 1);
+
 		longitude = longitude * (-1);
 	}
 
