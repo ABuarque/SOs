@@ -68,70 +68,45 @@ double getRightValue(int digits) {
 	return pow(10, digits);
 }
 
+double parseFloatingPointString(string decimalString, string floatingPointString) {
+	string pattern = "\"";
+	removeSubstrings(floatingPointString, pattern);
+	
+    int floatingPointerStringPart = 0; // to handle the first zero like 0.0654
+    int digitsOfStringNumber = 0;
+
+    removeSubstrings(decimalString, pattern);
+    double properNumber = stod(decimalString);
+
+	if(properNumber >= 0) {
+		floatingPointerStringPart = floatingPointString.size(); 
+		digitsOfStringNumber = digitsOfNumber(stod(floatingPointString));
+		if(floatingPointerStringPart == digitsOfStringNumber)
+			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber);
+		else
+			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber + 1);
+	} else {
+		properNumber = abs(properNumber);
+		
+		floatingPointerStringPart = floatingPointString.size(); 
+		digitsOfStringNumber = digitsOfNumber(stod(floatingPointString));
+		if(floatingPointerStringPart == digitsOfStringNumber)
+			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber);
+		else
+			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber + 1);
+
+		properNumber = properNumber * (-1); 
+	}
+	return properNumber;
+}
+
 Record* csvRecordParser(string recordStateAsCSV) {
 	vector<string> parts = split(recordStateAsCSV, ',');
 	long zipCode = stol(parts[0]);
 	string placeName = parts[1];
 	string state = parts[2];
 	string county = parts[3];
-	string pattern = "\"";
-	removeSubstrings(parts[4], pattern);
-	double latitude = stod(parts[4]);
-    
-    removeSubstrings(parts[5], pattern);
-	
-    int floatingPointerStringPart = 0; // to handle the first zero like 0.0654
-    int digitsOfStringNumber = 0;
-
-	if(latitude >= 0) {
-		floatingPointerStringPart = parts[5].size(); 
-		digitsOfStringNumber = digitsOfNumber(stod(parts[5]));
-		if(floatingPointerStringPart == digitsOfStringNumber)
-			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber);
-		else
-			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber + 1);
-	} else {
-		latitude = abs(latitude);
-		
-		floatingPointerStringPart = parts[5].size(); 
-		digitsOfStringNumber = digitsOfNumber(stod(parts[5]));
-		if(floatingPointerStringPart == digitsOfStringNumber)
-			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber);
-		else
-			latitude += stod(parts[5]) / getRightValue(digitsOfStringNumber + 1);
-
-		latitude = latitude * (-1); 
-	}
-
-	floatingPointerStringPart = 0;
-    digitsOfStringNumber = 0;
-
-	removeSubstrings(parts[6], pattern);
-	double longitude = stod(parts[6]);
-
-	removeSubstrings(parts[7], pattern);
-
-	if(longitude >= 0) {
-		floatingPointerStringPart = parts[7].size(); 
-		digitsOfStringNumber = digitsOfNumber(stod(parts[7]));
-		if(floatingPointerStringPart == digitsOfStringNumber)
-			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber);
-		else
-			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber + 1);
-	}
-	else {
-		longitude = abs(longitude);
-
-		floatingPointerStringPart = parts[7].size(); 
-		digitsOfStringNumber = digitsOfNumber(stod(parts[7]));
-		if(floatingPointerStringPart == digitsOfStringNumber)
-			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber);
-		else
-			longitude += stod(parts[7]) / getRightValue(digitsOfStringNumber + 1);
-
-		longitude = longitude * (-1);
-	}
-
+	double latitude = parseFloatingPointString(parts[4], parts[5]);
+	double longitude = parseFloatingPointString(parts[6], parts[7]);
 	return new Record(zipCode, state, county, placeName, latitude, longitude);
 }
-
