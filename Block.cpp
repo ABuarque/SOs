@@ -49,9 +49,9 @@ long Block::getRecordsSizeInsideBlockSet() {
 }
 
 string Block::toString() {
-	string blockSatate = "quantity: " + to_string(quantity) + ", \nrecordsSet: \n";
+	string blockSatate = "Block {\n quantity: " + to_string(quantity) + ", \n recordsSet: \n";
 	for(set<Record*>::iterator i = recordsSet.begin(); i != recordsSet.end(); i++)
 		blockSatate += "\t" +(*i)->toString();
-	blockSatate += "\n";
+	blockSatate += " } \n";
 	return blockSatate;
 }

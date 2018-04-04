@@ -81,6 +81,6 @@ string Record::toString() {
     state += ", county: " + county;
     state += ", placeName: " + placeName;
     state += ", latitute: " + to_string(latitute);
-    state += ", longitude: " + to_string(longitude) + "} \n";
+    state += ", longitude: " + to_string(longitude) + " } \n";
     return state;
 }
