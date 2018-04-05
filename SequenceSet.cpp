@@ -44,7 +44,11 @@ Record* SequenceSet::queryRecordByZipCode(long zipCode) {
 }
 
 void SequenceSet::removeRecordByZipCode(long zipCode) {
-	
+	for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++) {
+		Block* currentBlock = (*i);
+		currentBlock->removeRecordFromBlockByZipCode(zipCode);
+	}
+	totalRecordsInsideSequenceSet--;
 }
 
 string SequenceSet::toString() {
