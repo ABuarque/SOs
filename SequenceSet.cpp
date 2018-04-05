@@ -42,6 +42,7 @@ void removeRecordByZipCode(long zipCode);
 
 string SequenceSet::toString() {
 	string state = "SequenceSet {\n totalRecordsInsideSequenceSet: " + to_string(totalRecordsInsideSequenceSet);
+	state += ",\n recordsInCurrentBlock: " + to_string(recordsInCurrentBlock) + ",\n";
 	state += ",\n recordsQuantityPerBlock: " + to_string(recordsQuantityPerBlock) + ",\n";
 	state += " blockList {\n";
 	for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++)
