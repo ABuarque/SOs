@@ -12,9 +12,20 @@ SequenceSet::SequenceSet() {
 	totalRecordsInsideSequenceSet = 0;
 
 	recordsInCurrentBlock = 0;
+
+	fieldsName[0] = "Zip Code";
+	fieldsName[1] = "Place Name";
+	fieldsName[2] = "State";
+	fieldsName[3] = "County";
+	fieldsName[4] = "Latitude";
+	fieldsName[5] = "Longitute";
 }
 
 SequenceSet::~SequenceSet() {}
+
+string* SequenceSet::getFieldsNames() {
+	return fieldsName;
+}
 
 long  SequenceSet::getTotalRecordsInsideSequenceSet() {
 	return totalRecordsInsideSequenceSet;
@@ -49,6 +60,10 @@ void SequenceSet::removeRecordByZipCode(long zipCode) {
 		currentBlock->removeRecordFromBlockByZipCode(zipCode);
 	}
 	totalRecordsInsideSequenceSet--;
+}
+
+long SequenceSet::getRecordsQuantityPerBlock() {
+	return recordsQuantityPerBlock;
 }
 
 string SequenceSet::toString() {

@@ -13,6 +13,7 @@ private:
 	long totalRecordsInsideSequenceSet;
 	long recordsQuantityPerBlock;
 	std::list<Block*> blockList;
+	std::string fieldsName[6];
 
 public:
 	SequenceSet();
@@ -22,9 +23,13 @@ public:
 
 	Record* queryRecordByZipCode(long zipCode);
 
+	long getRecordsQuantityPerBlock();
+
 	void removeRecordByZipCode(long zipCode);
 
 	long getTotalRecordsInsideSequenceSet();
+
+	std::string* getFieldsNames();
 
 	std::string toString();
 
