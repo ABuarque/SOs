@@ -8,6 +8,8 @@
 
 class SequenceSet {
 private:
+	long recordsInCurrentBlock;
+	bool isBlockListEmpty;
 	long totalRecordsInsideSequenceSet;
 	long recordsQuantityPerBlock;
 	std::list<Block*> blockList;
@@ -21,6 +23,8 @@ public:
 	Record* queryRecordByZipCode(long zipCode);
 
 	void removeRecordByZipCode(long zipCode);
+
+	long getTotalRecordsInsideSequenceSet();
 
 	std::string toString();
 

@@ -7,19 +7,32 @@
 using namespace std;
 
 SequenceSet::SequenceSet() {
-	recordsQuantityPerBlock = 5;
+	isBlockListEmpty = true;
+	recordsQuantityPerBlock = 2;
 	totalRecordsInsideSequenceSet = 0;
+
+	recordsInCurrentBlock = 0;
 }
 
 SequenceSet::~SequenceSet() {}
 
+long  SequenceSet::getTotalRecordsInsideSequenceSet() {
+	return totalRecordsInsideSequenceSet;
+}
+
 void SequenceSet::addRecord(Record* record) {
+	if(recordsInCurrentBlock == 0) 
+		blockList.push_back(new Block());
+
 	for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++) {
 		Block* currentBlock = (*i);
 		if(currentBlock->getRecordsSizeInsideBlockSet() < recordsQuantityPerBlock) {
 			currentBlock->addRecordToBlockSet(record);
 			totalRecordsInsideSequenceSet++;
-		}
+			recordsInCurrentBlock++;
+			if(recordsInCurrentBlock == recordsQuantityPerBlock)
+				recordsInCurrentBlock = 0;
+		} 
 	}	
 }
 
