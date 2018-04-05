@@ -1,4 +1,7 @@
 #include "App.h"
+#include "RecordHandler.h"
+#include "Record.h"
+#include "SequenceSet.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -16,9 +19,10 @@ using namespace std;
 #define DISPLAY_RECORD 5
 #define CLOSE_APP 6
 #define SHOW_STATE 7
-#define DATA_SET_PATH "data_set.cvs"
+#define DATA_SET_PATH "proper_data_set.cvs"
 
-/*
+SequenceSet* sequenceSet;
+
 // Show header 
 void showHeader();
 
@@ -30,9 +34,13 @@ void bufferizeDataSet();
 
 void showState();
 
+void insertRecord();
+
 void sequenceSetEntryPoint() {
+	sequenceSet = new SequenceSet();
 	bool shouldRun = true;
 	while(shouldRun) {
+		system("clear || cls");
 		string input;
 		int option;
 		showHeader();
@@ -52,6 +60,7 @@ void sequenceSetEntryPoint() {
 
 		switch(option) {
 			case INSERT_RECORD:
+				insertRecord();
 				break;
 			case DELETE_RECORD:
 				break;
@@ -62,7 +71,6 @@ void sequenceSetEntryPoint() {
 			case DISPLAY_RECORD:
 				break;
 			case SHOW_STATE:
-				showState();
 				break;
 			case CLOSE_APP:
 				shouldRun = false;
@@ -72,13 +80,34 @@ void sequenceSetEntryPoint() {
 	delete sequenceSet;
 }
 
+void insertRecord() {
+	cout << "Type zip code: ";
+	long zipCode;
+	cin >> zipCode;
+	cout << "Type state: ";
+	string state;
+	getline(cin, state);
+	cout << "Type county: ";
+	string county;
+	getline(cin, county);
+	string placeName;
+	cout << "Type placeName:";
+	getline(cin, placeName);
+	cout << "Type latitute: ";
+	double latitute;
+	cin >> latitute;
+	double longitude;
+	cout << "Type longitude: ";
+	cin >> longitude;
+	sequenceSet->addRecord(new Record(zipCode, state, county, placeName, latitute, longitude));
+}
+
 void showHeader() {
-	Header* header = sequenceSet->getHeader();
-	string* fieldsNames = header->getFieldsNames();
+	string* fieldsNames = sequenceSet->getFieldsNames();
 	cout << "-----------------------" << endl;
 	cout << "| Sequence set Header|" << endl;
 	cout << "-----------------------" << endl;
-	cout << "-> Fields per record: " << header->getFieldsPerRecord() << endl;
+	cout << "-> Fields per record: " << 6 << endl;
 	cout << "-> Attributes names: " << endl;
 	cout << "\t* "<< fieldsNames[0] << endl;
 	cout << "\t* "<< fieldsNames[1] << endl;
@@ -86,7 +115,8 @@ void showHeader() {
 	cout << "\t* "<< fieldsNames[3] << endl;
 	cout << "\t* "<< fieldsNames[4] << endl;
 	cout << "\t* "<< fieldsNames[5] << endl;
-	cout << "-> Total records inside per node: " << header->getTotalRecordsInside() << endl;
+	cout << "-> Total records inside: " << sequenceSet->getTotalRecordsInsideSequenceSet() << endl;
+	cout << "-> Total records per node: " << sequenceSet->getRecordsQuantityPerBlock() << endl;
 	cout << endl;
 }
 
@@ -98,17 +128,3 @@ void showMenu() {
 	cout << "5. Display a record\n";	
 	cout << "6. Close app\n";
 }
-
-void bufferizeDataSet() {
-	ifstream input;
-	input.open("data_set.csv");
-	if(input.is_open()) {
-		string line;
-		while(!input.eof()) {
-			getline(input, line);
-			Record* currentRecord = csvRecordParser(line);
-			sequenceSet->addRecordToCurrentBlock(currentRecord);
-		}
-	}
-	input.close();
-} */
