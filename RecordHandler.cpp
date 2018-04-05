@@ -110,3 +110,21 @@ Record* csvRecordParser(string recordStateAsCSV) {
 	double longitude = parseFloatingPointString(parts[6], parts[7]);
 	return new Record(zipCode, state, county, placeName, latitude, longitude);
 }
+
+void cleanDataSet(string inputDataSet, string outputDataset) {
+	fstream inputStream;
+	ofstream outfile;
+  	outfile.open(outputDataset);
+	inputStream.open(inputDataSet);
+	if(inputStream.is_open()) {
+		string line;
+		while(!inputStream.eof()) {
+			getline(inputStream, line);
+			if(split(line, ',').size() == 8) {
+				outfile << line << endl;
+			}
+		}
+	}
+
+	outfile.close();
+}
