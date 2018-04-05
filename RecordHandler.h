@@ -8,6 +8,7 @@
 Record* csvRecordParser(std::string recordStateAsCSV);
 
 // some records are bad formated, it cleans up data set
+// OBS: REMOVE LAST EMPTY LINE
 void cleanDataSet(std::string inputDataSet, std::string outputDataset);
 
 #endif
