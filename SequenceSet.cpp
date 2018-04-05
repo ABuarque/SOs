@@ -8,7 +8,7 @@ using namespace std;
 
 SequenceSet::SequenceSet() {
 	isBlockListEmpty = true;
-	recordsQuantityPerBlock = 2;
+	recordsQuantityPerBlock = 10000;
 	totalRecordsInsideSequenceSet = 0;
 
 	recordsInCurrentBlock = 0;
@@ -45,8 +45,8 @@ string SequenceSet::toString() {
 	state += ",\n recordsInCurrentBlock: " + to_string(recordsInCurrentBlock) + ",\n";
 	state += ",\n recordsQuantityPerBlock: " + to_string(recordsQuantityPerBlock) + ",\n";
 	state += " blockList {\n";
-	for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++)
-		state += "\t " + (*i)->toString();
+	//for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++)
+	//	state += "\t " + (*i)->toString();
 	state += "  }\n}\n";
 	return state;
 }
