@@ -59,7 +59,7 @@ void Record::setPlaceName(string placeName) {
     this->placeName = placeName;
 }
 
-double Record::getLatitute() {
+double Record::getLatitude() {
     return latitude;
 }
 
@@ -71,7 +71,7 @@ double Record::getLongitude() {
     return longitude;
 }
 
-void Record::setLongigute(double longitude) {
+void Record::setLongitude(double longitude) {
     this->longitude = longitude;
 }
 

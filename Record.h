@@ -36,13 +36,13 @@ public:
 
     void setPlaceName(std::string placeName);
 
-    double getLatitute();
+    double getLatitude();
 
     void setLatitude(double latitude);
 
     double getLongitude();
 
-    void setLongigute(double longigute);
+    void setLongitude(double longitude);
 
     std::string toString();
 };
