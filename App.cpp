@@ -43,6 +43,7 @@ void insertRecord();
 void deleteRecord();
 void modifyFieldInRecord();
 void displayRecord();
+void displaySpecificField();
 /////////////////////////////////////////////////////
 
 void sequenceSetEntryPoint() {
@@ -85,6 +86,7 @@ void sequenceSetEntryPoint() {
 				modifyFieldInRecord();
 				break;
 			case DISPLAY_SPECIFIC_FIELD:
+				displaySpecificField();
 				break;
 			case DISPLAY_RECORD:
 				displayRecord();
@@ -249,6 +251,65 @@ void displayRecord() {
 		feedBackMessage = "There are no records inside the set.";
 	}
 }	
+
+void displaySpecificField() {
+	if(sequenceSet->getTotalRecordsInsideSequenceSet() > 0) {
+		cout << "Type record zip code: ";
+		long zipCode;
+		cin >> zipCode;
+		getchar();
+		Record* record = sequenceSet->queryRecordByZipCode(zipCode);
+		while(record == NULL) {
+			cout << "Was not found any record with given zip code. Try again: ";
+			long zipCode;
+			cin >> zipCode;
+			getchar();
+			record = sequenceSet->queryRecordByZipCode(zipCode);
+		}
+		cout << "Type which field you wanna see: \n";
+		cout << "\t1. Place name\n";
+		cout << "\t2. State\n";
+		cout << "\t3. County\n";
+		cout << "\t4. Latitude\n";
+		cout << "\t5. Longitude\n";
+		string fieldName;
+		int field;
+		bool isTryingToGetInput = true;
+		while(isTryingToGetInput) {
+			try {
+				getline(cin, fieldName);
+				field = stoi(fieldName);
+				isTryingToGetInput = false;
+			} catch(...) {
+				cout << "Type online numbers: ";
+			}
+		}
+
+		switch(field) {
+			case 1:
+				cout << "Place name: " << record->getPlaceName() << endl;
+				break;
+			case 2:
+				cout << "State: " << record->getState() << endl;
+				break;
+			case 3:
+				cout << "County: " << record->getCounty() << endl;
+				break;
+			case 4:
+				cout << "Latitude: " << record->getLatitude() << endl;
+				break;
+			case 5:
+				cout << "Longitude: " << record->getLongitude() << endl;
+				break;
+		}
+		cout << "Press any key to get back";
+		string input;
+		getline(cin, input);
+	} else {
+		shouldShowFeedBackMessage = true;
+		feedBackMessage = "There are no records inside the set.";
+	}
+}
 
 void showHeader() {
 	string* fieldsNames = sequenceSet->getFieldsNames();
