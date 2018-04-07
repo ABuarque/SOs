@@ -1,1 +1,1 @@
-rm app *.o *.d
+rm app *.o
