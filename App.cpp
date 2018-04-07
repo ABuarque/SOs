@@ -162,31 +162,22 @@ void modifyFieldInRecord() {
 		cout << "\t4 Latitute" << endl;
 		cout << "\t5 Longitude" << endl;
 		cout << ">>> ";
-		bool isTryingToGetInput = true;
-		string input;
-		int option;
-		while(isTryingToGetInput) {
-			try {
-				getline(cin, input);
-				option = stoi(input)	;
-				getchar();
-				isTryingToGetInput = false;
-			} catch(...) {
-				cout << "Invalid input\n";
-			}
-	    }
+		int input;
+		cin >> input;
+		getchar();
 
-	    sequenceSet->removeRecordByZipCode(zipCode);
+		sequenceSet->removeRecordByZipCode(zipCode);
 
-	    switch(option) {
-	    	case 1:
-	    		cout << "Type new place name: ";
-	    		string placeName;
-	    		getline(cin, placeName);
-	    		recordToChange->setPlaceName(placeName);
-	    		sequenceSet->addRecord(recordToChange);
-	    		break;
-	    }
+		switch(input) {
+			case 1:
+				cout << "Type new place name: ";
+				string placeName;
+				getline(cin, placeName);
+				recordToChange->setPlaceName(placeName);
+				sequenceSet->addRecord(recordToChange);
+				break;
+		}
+
 	} else {
 		shouldShowFeedBackMessage = true;
 		feedBackMessage = "There are no records inside the set.";
