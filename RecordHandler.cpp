@@ -11,27 +11,63 @@
 
 using namespace std;
 
-// handle spliting string process
+/**
+ * This util function helps in process os spliting
+ * a string (see below function).
+ * 
+ * @param a string instance.
+ * @param a char used to split
+ * @param a template object hold modification in string.
+ */
 template<typename Out>
 void split(const std::string &s, char delim, Out result);
 
-// handle spliting string process
+/**
+ * It gets a string to be splited and a char to be
+ * used as spliting token.
+ * 
+ * @param a string to be splited
+ * @param a char to be the token
+ * @return a vector wich elements are parts of string
+ */
 std::vector<std::string> split(const std::string &s, char delim);
 
-// remove substrings
+/**
+ * It gets two strings and whenever the second
+ * string appears in first, it'll be removed.
+ * 
+ * @param string to be modified
+ * @param substring
+ */
 void removeSubstrings(std::string& s, std::string& p);
 
-// return how many digits has a number
+/**
+ * It gets a number and returns how many digits it has.
+ *
+ * @param an int
+ * @return how many digits it has
+ */
 int digitsOfNumber(int number);
 
-// return 10 ** number of digits
+/**
+ * It gets a number 'digits' and returns other number in form:
+ * 10 ^ 'digits'.
+ * 
+ * @param how many digits have a number
+ * @return a number in form 10 ^ 'digits'
+ */
 double getRightValue(int digits);
 
-// get a recort state as csv, builds a record and returns it
-Record* csvRecordParser(std::string recordStateAsCSV);
-
+/**
+ * It gets a latitude/longitude's parts in string format
+ * and reuturns its proper value as a double.
+ * 
+ * @param first part of latitude/longitude
+ * @param second part of latitude/longitude
+ * @return number in proper format
+ */
+double parseFloatingPointString(string decimalString, string floatingPointString);
 //////////////////IMPLEMENTATION/////////////////
-
 template<typename Out>
 void split(const std::string &s, char delim, Out result) {
     std::stringstream ss(s);
