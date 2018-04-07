@@ -36,7 +36,13 @@ void bufferizeDataSet();
 
 void showState();
 
+string feedBackMessage;
+bool shouldShowFeedBackMessage = false;
+
+//////////////////////////APP's ToDos///////////////////
 void insertRecord();
+void deleteRecord();
+/////////////////////////////////////////////////////
 
 void sequenceSetEntryPoint() {
 	sequenceSet = new SequenceSet();
@@ -47,11 +53,14 @@ void sequenceSetEntryPoint() {
 		int option;
 		showHeader();
 		showMenu();
-		cout << "Type an option: ";
+		if(shouldShowFeedBackMessage) {
+			cout << "| System says: " << feedBackMessage << " |" << endl;
+			shouldShowFeedBackMessage = false;
+		}
+		cout << "Type an option >>> ";
 		bool isTryingToGetInput = true;
 		while(isTryingToGetInput) {
 			try {
-				cout << ">>> ";
 				getline(cin, input);
 				option = stoi(input);
 				isTryingToGetInput = false;
@@ -59,7 +68,8 @@ void sequenceSetEntryPoint() {
 				system("clear || cls");
 				showHeader();
 				showMenu();
-				cout << "Bad input! Try again.\n";
+				cout << "| System says: " << "Bad input!" << " |" << endl;
+				cout << "Type an option >>> ";
 			}
 	    }
 
@@ -68,6 +78,7 @@ void sequenceSetEntryPoint() {
 				insertRecord();
 				break;
 			case DELETE_RECORD:
+				deleteRecord();
 				break;
 			case MODIFY_FIELD_IN_RECORD:
 				break;
@@ -81,10 +92,8 @@ void sequenceSetEntryPoint() {
 				shouldRun = false;
 				break;
 			default:
-				system("clear || cls");
-				showHeader();
-				showMenu();
-				cout << "Invalid Option!\n";
+				shouldShowFeedBackMessage = true;
+				feedBackMessage = "Invalid paramenter";
 				break;
 		}
 	}
@@ -116,6 +125,19 @@ void insertRecord() {
 	Record* givenRecord = new Record(zipCode, state, county, placeName, latitute, longitude);
 	DEBUG cout << givenRecord->toString();
 	sequenceSet->addRecord(givenRecord);
+}
+
+void deleteRecord() {
+	if(sequenceSet->getTotalRecordsInsideSequenceSet() > 0) {
+		cout << "Type record zip code: ";
+		long zipCode;
+		cin >> zipCode;
+		getchar();
+		sequenceSet->removeRecordByZipCode(zipCode); 
+	} else {
+		shouldShowFeedBackMessage = true;
+		feedBackMessage = "There are no records inside the set.";
+	}
 }
 
 void showHeader() {
