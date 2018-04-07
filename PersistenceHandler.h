@@ -4,10 +4,6 @@
 #include "SequenceSet.h"
 #include <string>
 
-std::string recordToCSV(Record* record);
-
-std::string doubleToString(double number);
-
 /**
  * It gets a path for a stored SequenceSet state
  * to bufferize it, put inside a SequenceSet object
