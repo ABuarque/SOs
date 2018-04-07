@@ -168,7 +168,7 @@ void modifyFieldInRecord() {
 		while(isTryingToGetInput) {
 			try {
 				getline(cin, input);
-				option = stoi(input);
+				option = stoi(input)	;
 				getchar();
 				isTryingToGetInput = false;
 			} catch(...) {
@@ -200,6 +200,13 @@ void displayRecord() {
 		cin >> zipCode;
 		getchar();
 		Record* record = sequenceSet->queryRecordByZipCode(zipCode);
+		while(record == NULL) {
+			cout << "Was not found any record with given zip code. Try again: ";
+			long zipCode;
+			cin >> zipCode;
+			getchar();
+			record = sequenceSet->queryRecordByZipCode(zipCode);
+		}
 		cout << "Record resume: \n";
 		cout << "\tZip code: " << record->getZipCode() << endl;
 		cout << "\tPlace name: " << record->getPlaceName() << endl;
