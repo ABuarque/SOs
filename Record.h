@@ -15,11 +15,32 @@ private:
     double longitude;
 
 public:
+    /**
+     * Constructor with params for an instance of Record class.
+     * 
+     * @param zipCode
+     * @param state
+     * @param county
+     * @param placeName
+     * @param latitude
+     * @param longitude
+     */
 	Record(long zipCode, std::string state, std::string county, 
 		std::string placeName, double latitude, double longitude);
+
+    /**
+     * Default constructor. It just returns an instance.
+     * 
+     */
     Record();
+
+    /**
+     * Default descrutor. 
+     * 
+     */
     ~Record();
 
+    // *** Just getters and setters *** //
     long getZipCode();
 
     void setZipCode(long zipCode);
@@ -44,6 +65,11 @@ public:
 
     void setLongitude(double longitude);
 
+    /**
+     * It returns instance state in a string
+     *
+     * @return a string with attribute values.
+     */
     std::string toString();
 };
 
