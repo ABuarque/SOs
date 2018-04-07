@@ -18,7 +18,6 @@ using namespace std;
 #define DISPLAY_SPECIFIC_FIELD 4
 #define DISPLAY_RECORD 5
 #define CLOSE_APP 6
-#define SHOW_STATE 7
 #define DATA_SET_PATH "proper_data_set.cvs"
 
 #define DEBUG if(true)
@@ -89,8 +88,6 @@ void sequenceSetEntryPoint() {
 				break;
 			case DISPLAY_RECORD:
 				displayRecord();
-				break;
-			case SHOW_STATE:
 				break;
 			case CLOSE_APP:
 				shouldRun = false;
