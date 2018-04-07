@@ -2,6 +2,7 @@
 #include "RecordHandler.h"
 #include "Record.h"
 #include "SequenceSet.h"
+#include "PersistenceHandler.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -18,7 +19,7 @@ using namespace std;
 #define DISPLAY_SPECIFIC_FIELD 4
 #define DISPLAY_RECORD 5
 #define CLOSE_APP 6
-#define DATA_SET_PATH "proper_data_set.cvs"
+const string DATA_SET_PATH = "proper_data_set.csv";
 
 #define DEBUG if(true)
 
@@ -47,7 +48,7 @@ void displaySpecificField();
 /////////////////////////////////////////////////////
 
 void sequenceSetEntryPoint() {
-	sequenceSet = new SequenceSet();
+	sequenceSet = bufferizeDataSet(DATA_SET_PATH);//new SequenceSet();
 	bool shouldRun = true;
 	while(shouldRun) {
 		system("clear || cls");

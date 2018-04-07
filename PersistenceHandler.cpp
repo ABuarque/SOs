@@ -16,14 +16,14 @@ SequenceSet* bufferizeDataSet(string dataSetPath) {
 		string line;
 		while(!inputStream.eof()) {
 			getline(inputStream, line);
-			sequenceSet->addRecord(csvRecordParser(std::string recordStateAsCSV));
+			sequenceSet->addRecord(csvRecordParser(line));
 		}
 	}
-	ifstream.close();
+	inputStream.close();
 	return sequenceSet;
 }
 
 void updateDataSet(SequenceSet* sequenceSet, string dataSetPath) {
-	
+
 }
 
