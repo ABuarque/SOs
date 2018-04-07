@@ -13,6 +13,7 @@
 
 using namespace std;
 
+// Some define flags to reference interface operations	
 #define INSERT_RECORD 1
 #define DELETE_RECORD 2
 #define MODIFY_FIELD_IN_RECORD 3
@@ -23,6 +24,7 @@ const string DATA_SET_PATH = "proper_data_set.csv";
 
 #define DEBUG if(true)
 
+// Sequence set object used 
 SequenceSet* sequenceSet;
 
 // Show header 
@@ -34,21 +36,22 @@ void showMenu();
 // retrieve data from csv file and put inside SequenceSet object
 void bufferizeDataSet();
 
-void showState();
-
+// string reference to store feedback message
 string feedBackMessage;
+
+// flag used to say if system should show feedback message
 bool shouldShowFeedBackMessage = false;
 
-//////////////////////////APP's ToDos///////////////////
-void insertRecord();
-void deleteRecord();
-void modifyFieldInRecord();
-void displayRecord();
-void displaySpecificField();
-/////////////////////////////////////////////////////
+//**** These functions works with app's obligations. ****// 
+void insertRecord();                                     //
+void deleteRecord();                                     //
+void modifyFieldInRecord();                              //
+void displayRecord();                                    //
+void displaySpecificField();                             //
+///////////////////////////////////////////////////////////
 
 void sequenceSetEntryPoint() {
-	sequenceSet = bufferizeDataSet(DATA_SET_PATH);//new SequenceSet();
+	sequenceSet = bufferizeDataSet(DATA_SET_PATH);
 	bool shouldRun = true;
 	while(shouldRun) {
 		system("clear || cls");
