@@ -7,12 +7,12 @@ using namespace std;
 
 Record::Record(long zipCode, string state, 
                string county, string placeName, 
-               double latitute, double longitude) {
+               double latitude, double longitude) {
 	this->zipCode = zipCode;
 	this->state = state;
 	this->county = county;
 	this->placeName = placeName;
-	this->latitute = latitute;
+	this->latitude = latitude;
 	this->longitude = longitude;
 }
 
@@ -21,7 +21,7 @@ Record::Record() {
     this->state = "";
     this->county = "";
     this->placeName = "";
-    this->latitute = 0;
+    this->latitude = 0;
     this->longitude = 0;    
 }
 
@@ -60,11 +60,11 @@ void Record::setPlaceName(string placeName) {
 }
 
 double Record::getLatitute() {
-    return latitute;
+    return latitude;
 }
 
-void Record::setLatitute(double latitute) {
-    this->latitute = latitute;
+void Record::setLatitude(double latitude) {
+    this->latitude = latitude;
 }
 
 double Record::getLongitude() {
@@ -80,7 +80,7 @@ string Record::toString() {
     state += ", state: " + this->state;
     state += ", county: " + county;
     state += ", placeName: " + placeName;
-    state += ", latitute: " + to_string(latitute);
+    state += ", latitude: " + to_string(latitude);
     state += ", longitude: " + to_string(longitude) + " } \n";
     return state;
 }

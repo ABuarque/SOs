@@ -11,12 +11,12 @@ private:
     std::string state;
     std::string county;
     std::string placeName;
-    double latitute;
+    double latitude;
     double longitude;
 
 public:
 	Record(long zipCode, std::string state, std::string county, 
-		std::string placeName, double latitute, double longitude);
+		std::string placeName, double latitude, double longitude);
     Record();
     ~Record();
 
@@ -38,7 +38,7 @@ public:
 
     double getLatitute();
 
-    void setLatitute(double latitute);
+    void setLatitude(double latitude);
 
     double getLongitude();
 
