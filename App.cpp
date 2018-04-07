@@ -134,6 +134,14 @@ void deleteRecord() {
 		long zipCode;
 		cin >> zipCode;
 		getchar();
+		Record* toRemove = sequenceSet->queryRecordByZipCode(zipCode);
+		while(toRemove == NULL) {
+			cout << "Was not found any records with given zip code. Try again: ";
+			long zipCode;
+			cin >> zipCode;
+			getchar();
+			toRemove = sequenceSet->queryRecordByZipCode(zipCode);
+		}
 		sequenceSet->removeRecordByZipCode(zipCode); 
 	} else {
 		shouldShowFeedBackMessage = true;
@@ -159,7 +167,7 @@ void modifyFieldInRecord() {
 		cout << "\t1 Place name" << endl;
 		cout << "\t2 State" << endl;
 		cout << "\t3 County" << endl;
-		cout << "\t4 Latitute" << endl;
+		cout << "\t4 Latitude" << endl;
 		cout << "\t5 Longitude" << endl;
 		cout << ">>> ";
 		int input;
@@ -168,12 +176,40 @@ void modifyFieldInRecord() {
 
 		sequenceSet->removeRecordByZipCode(zipCode);
 
+		string value;
+		double localizationValue;
+
 		switch(input) {
 			case 1:
 				cout << "Type new place name: ";
-				string placeName;
-				getline(cin, placeName);
-				recordToChange->setPlaceName(placeName);
+				getline(cin, value);
+				recordToChange->setPlaceName(value);
+				sequenceSet->addRecord(recordToChange);
+				break;
+			case 2:
+				cout << "Type new state: ";
+				getline(cin, value);
+				recordToChange->setState(value);
+				sequenceSet->addRecord(recordToChange);
+				break;
+			case 3:	
+				cout << "Type new county: ";
+				getline(cin, value);
+				recordToChange->setCounty(value);
+				sequenceSet->addRecord(recordToChange);
+				break;
+			case 4:
+				cout << "Type new Latitude: ";
+				cin >> localizationValue;
+				getchar();
+				recordToChange->setLatitude(localizationValue);
+				sequenceSet->addRecord(recordToChange);
+				break;
+			case 5:
+				cout << "Type new Longitude: ";
+				cin >> localizationValue;
+				getchar();
+				recordToChange->setLongitude(localizationValue);
 				sequenceSet->addRecord(recordToChange);
 				break;
 		}
@@ -203,7 +239,7 @@ void displayRecord() {
 		cout << "\tPlace name: " << record->getPlaceName() << endl;
 		cout << "\tState: " << record->getState() << endl;
 		cout << "\tCounty: " << record->getCounty() << endl;
-		cout << "\tLatitude: " << record->getLatitute() << endl;
+		cout << "\tLatitude: " << record->getLatitude() << endl;
 		cout << "\tLongitude: " << record->getLongitude() << endl;
 		cout << "Press any key to get back";
 		string input;
