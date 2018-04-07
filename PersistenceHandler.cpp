@@ -8,6 +8,15 @@
 
 using namespace std;
 
+/** 
+ * Auxiliar function that gets a record and
+ * parses it's state into a csv record.
+ *
+ * @param a Record object
+ * @return a string in csv format
+ */
+string recordToCSV(Record* record);
+
 SequenceSet* bufferizeDataSet(string dataSetPath) {
 	ifstream inputStream;
 	inputStream.open(dataSetPath);
@@ -27,3 +36,16 @@ void updateDataSet(SequenceSet* sequenceSet, string dataSetPath) {
 
 }
 
+string doubleToString(double number) {
+	
+}
+
+string recordToCSV(Record* record) {
+	string csv = to_string(record->getZipCode());
+	csv += "," + record->getPlaceName();
+	csv += "," + record->getState();
+	csv += "," + record->getCounty();
+	csv += ",\"" + to_string(record->getLatitude()) + "\"";
+	csv += ",\"" + to_string(record->getLongitude()) + "\"";
+ 	return csv;
+}
