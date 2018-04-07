@@ -21,6 +21,8 @@ using namespace std;
 #define SHOW_STATE 7
 #define DATA_SET_PATH "proper_data_set.cvs"
 
+#define DEBUG if(true)
+
 SequenceSet* sequenceSet;
 
 // Show header 
@@ -54,6 +56,9 @@ void sequenceSetEntryPoint() {
 				option = stoi(input);
 				isTryingToGetInput = false;
 			} catch(...) {
+				system("clear || cls");
+				showHeader();
+				showMenu();
 				cout << "Bad input! Try again.\n";
 			}
 	    }
@@ -75,6 +80,12 @@ void sequenceSetEntryPoint() {
 			case CLOSE_APP:
 				shouldRun = false;
 				break;
+			default:
+				system("clear || cls");
+				showHeader();
+				showMenu();
+				cout << "Invalid Option!\n";
+				break;
 		}
 	}
 	delete sequenceSet;
@@ -84,6 +95,7 @@ void insertRecord() {
 	cout << "Type zip code: ";
 	long zipCode;
 	cin >> zipCode;
+	getchar();
 	cout << "Type state: ";
 	string state;
 	getline(cin, state);
@@ -91,15 +103,19 @@ void insertRecord() {
 	string county;
 	getline(cin, county);
 	string placeName;
-	cout << "Type placeName:";
+	cout << "Type place name: ";
 	getline(cin, placeName);
 	cout << "Type latitute: ";
 	double latitute;
 	cin >> latitute;
+	getchar();
 	double longitude;
 	cout << "Type longitude: ";
 	cin >> longitude;
-	sequenceSet->addRecord(new Record(zipCode, state, county, placeName, latitute, longitude));
+	getchar();
+	Record* givenRecord = new Record(zipCode, state, county, placeName, latitute, longitude);
+	DEBUG cout << givenRecord->toString();
+	sequenceSet->addRecord(givenRecord);
 }
 
 void showHeader() {
