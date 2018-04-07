@@ -7,11 +7,18 @@ using namespace std;
 
 ////////////////////////////////////////////////
 
+// Util variable on searching process.
 long zipCodeToFind = 0;
 
-bool onSearchUtil(Record* record) {
-	return record->getZipCode() == zipCodeToFind;
-}
+/**
+ * It's a helpfull function used in Records searching.
+ * It true if given Record is equal to zipCodeToFind 
+ * variable, and false if not. 
+ *
+ * @param a Record object
+ * @return true if is right Record, else if not.
+ */
+bool onSearchUtil(Record* record);
 ///////////////////////////////////////////////
 
 Block::Block() {
@@ -54,4 +61,8 @@ string Block::toString() {
 		blockSatate += "\t" +(*i)->toString();
 	blockSatate += " }\n}\n";
 	return blockSatate;
+}
+
+bool onSearchUtil(Record* record) {
+	return record->getZipCode() == zipCodeToFind;
 }
