@@ -4,7 +4,9 @@
 #include "Record.h"
 #include <string>
 #include <iostream>
+#include <set>
 #include <algorithm>
+#include <list>
 #include <fstream>
 
 using namespace std;
@@ -44,7 +46,25 @@ SequenceSet* bufferizeDataSet(string dataSetPath) {
 }
 
 void updateDataSet(SequenceSet* sequenceSet, string dataSetPath) {
+	ofstream outputStream;
+	outputStream.open(dataSetPath, std::ofstream::out);
+	list<Block*> blockList = sequenceSet->getBlockList();
+	for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++) {
+		Block* block = (*i);	
+		set<Record*> recordsSet = block->getRecordsSet();
+		for(set<Record*>::iterator r = recordsSet.begin(); r != recordsSet.end(); r++) {
+			Record* record = (*r);
+			outputStream << recordToCSV(record) << endl;
+		}
+	}
+	outputStream.close();
+}
 
+void appendRecord(Record* record, string dataSetPath) {
+	ofstream outputStream;
+	outputStream.open(dataSetPath, std::ofstream::app);
+	outputStream << "\n" + recordToCSV(record);
+	outputStream.close();
 }
 
 string doubleToString(double number) {
