@@ -65,6 +65,13 @@ public:
 	long getRecordsSizeInsideBlockSet();
 
 	/**
+	 * It returns a reference to records set.
+	 *
+	 * @return reference for records set
+	 */
+	std::set<Record*> getRecordsSet();
+
+	/**
      * It returns instance state in a string
      *
      * @return a string with attribute values.

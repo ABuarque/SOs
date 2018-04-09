@@ -51,7 +51,7 @@ void displaySpecificField();                             //
 ///////////////////////////////////////////////////////////
 
 void sequenceSetEntryPoint() {
-	sequenceSet = bufferizeDataSet(DATA_SET_PATH);
+	sequenceSet = bufferizeDataSet(DATA_SET_PATH);//new SequenceSet(); //bufferizeDataSet(DATA_SET_PATH);
 	bool shouldRun = true;
 	while(shouldRun) {
 		system("clear || cls");
@@ -104,6 +104,7 @@ void sequenceSetEntryPoint() {
 				break;
 		}
 	}
+	updateDataSet(sequenceSet, DATA_SET_PATH);
 	delete sequenceSet;
 }
 
@@ -132,6 +133,8 @@ void insertRecord() {
 	Record* givenRecord = new Record(zipCode, state, county, placeName, latitute, longitude);
 	DEBUG cout << givenRecord->toString();
 	sequenceSet->addRecord(givenRecord);
+	appendRecord(givenRecord, "proper_data_set.csv");
+	//sequenceSet = bufferizeDataSet("proper_data_set.csv");
 }
 
 void deleteRecord() {
