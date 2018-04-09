@@ -29,6 +29,8 @@ public:
 
 	long getTotalRecordsInsideSequenceSet();
 
+	std::list<Block*> getBlockList();
+
 	std::string* getFieldsNames();
 
 	std::string toString();

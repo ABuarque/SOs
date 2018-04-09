@@ -8,7 +8,7 @@ using namespace std;
 
 SequenceSet::SequenceSet() {
 	isBlockListEmpty = true;
-	recordsQuantityPerBlock = 20000; //half
+	recordsQuantityPerBlock = 100; //half
 	totalRecordsInsideSequenceSet = 0;
 
 	recordsInCurrentBlock = 0;
@@ -31,6 +31,10 @@ long  SequenceSet::getTotalRecordsInsideSequenceSet() {
 	return totalRecordsInsideSequenceSet;
 }
 
+list<Block*> SequenceSet::getBlockList() {
+	return blockList;
+}
+
 void SequenceSet::addRecord(Record* record) {
 	if(recordsInCurrentBlock == 0) 
 		blockList.push_back(new Block());
@@ -48,10 +52,18 @@ void SequenceSet::addRecord(Record* record) {
 }
 
 Record* SequenceSet::queryRecordByZipCode(long zipCode) {
+	Record* toReturn = NULL;
 	for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++) {
 		Block* currentBlock = (*i);
-		return currentBlock->findRecordByZipCode(zipCode);
+		Record* record = currentBlock->findRecordByZipCode(zipCode);
+		if(record == NULL)
+			continue;
+		else {
+			toReturn = record;
+			break;
+		}
 	}
+	return toReturn;
 }
 
 void SequenceSet::removeRecordByZipCode(long zipCode) {
