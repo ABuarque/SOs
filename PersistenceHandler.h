@@ -23,4 +23,13 @@ SequenceSet* bufferizeDataSet(std::string dataSetPath);
  */
 void updateDataSet(SequenceSet* sequenceSet, std::string dataSetPath);
 
+/**
+ * It gets a Record, gets it's state and parses it
+ * into a csv file and appends it into data set.
+ *
+ * @param SequenceSet object
+ * @param path to store
+ */
+void appendRecord(Record* record, std::string dataSetPath);
+
 #endif

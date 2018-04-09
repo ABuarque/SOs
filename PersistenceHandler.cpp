@@ -38,6 +38,11 @@ SequenceSet* bufferizeDataSet(string dataSetPath) {
 		string line;
 		while(!inputStream.eof()) {
 			getline(inputStream, line);
+			if(line == "") {
+				getline(inputStream, line);
+				if(line == "")
+					break;
+			}
 			sequenceSet->addRecord(csvRecordParser(line));
 		}
 	}
