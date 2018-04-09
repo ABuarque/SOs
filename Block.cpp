@@ -27,10 +27,14 @@ Block::Block() {
 
 Block::~Block() {}
 
+set<Record*>  Block::getRecordsSet() {
+	return recordsSet;
+}
+
 Record* Block::findRecordByZipCode(long zipCode) {
 	zipCodeToFind = zipCode;
 	set<Record*>::iterator recordsIterator 
-				= std::find_if(recordsSet.begin(), recordsSet.end(), onSearchUtil);	
+			= std::find_if(recordsSet.begin(), recordsSet.end(), onSearchUtil);	
 	if(recordsIterator != recordsSet.end())
 		return (*recordsIterator);
 	return NULL;
