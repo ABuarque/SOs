@@ -2,6 +2,7 @@
 #include <set>
 #include <algorithm> 
 #include <string>
+#include "utils.h"
 
 using namespace std;
 
@@ -60,7 +61,7 @@ long Block::getRecordsSizeInsideBlockSet() {
 }
 
 string Block::toString() {
-	string blockSatate = "Block {\n quantity: " + to_string(quantity) + ", \n recordsSet { \n";
+	string blockSatate = "Block {\n quantity: " + string(intToString(quantity)) + ", \n recordsSet { \n";
 	for(set<Record*>::iterator i = recordsSet.begin(); i != recordsSet.end(); i++)
 		blockSatate += "\t" +(*i)->toString();
 	blockSatate += " }\n}\n";

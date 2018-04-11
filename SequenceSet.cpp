@@ -3,6 +3,7 @@
 #include "Block.h"
 #include <string>
 #include "Record.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -79,9 +80,9 @@ long SequenceSet::getRecordsQuantityPerBlock() {
 }
 
 string SequenceSet::toString() {
-	string state = "SequenceSet {\n totalRecordsInsideSequenceSet: " + to_string(totalRecordsInsideSequenceSet);
-	state += ",\n recordsInCurrentBlock: " + to_string(recordsInCurrentBlock) + ",\n";
-	state += ",\n recordsQuantityPerBlock: " + to_string(recordsQuantityPerBlock) + ",\n";
+	string state = "SequenceSet {\n totalRecordsInsideSequenceSet: " + string(intToString(totalRecordsInsideSequenceSet));
+	state += ",\n recordsInCurrentBlock: " + string(intToString(recordsInCurrentBlock)) + ",\n";
+	state += ",\n recordsQuantityPerBlock: " + string(intToString(recordsQuantityPerBlock)) + ",\n";
 	state += " blockList {\n";
 	for(list<Block*>::iterator i = blockList.begin(); i != blockList.end(); i++)
 		state += "\t " + (*i)->toString();

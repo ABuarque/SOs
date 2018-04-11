@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include "utils.h"
 
 using namespace std;
 
@@ -76,11 +77,11 @@ void Record::setLongitude(double longitude) {
 }
 
 string Record::toString() {
-    string state = "Record: { zipCode: " + to_string(zipCode);
+    string state = "Record: { zipCode: " + string(intToString((int) zipCode));
     state += ", state: " + this->state;
     state += ", county: " + county;
     state += ", placeName: " + placeName;
-    state += ", latitude: " + to_string(latitude);
-    state += ", longitude: " + to_string(longitude) + " } \n";
+    state += ", latitude: " + string(doubleToString(latitude));
+    state += ", longitude: " + string(doubleToString(longitude)) + " } \n";
     return state;
 }

@@ -151,8 +151,8 @@ Record* csvRecordParser(string recordStateAsCSV) {
 void cleanDataSet(string inputDataSet, string outputDataset) {
 	fstream inputStream;
 	ofstream outfile;
-  	outfile.open(outputDataset);
-	inputStream.open(inputDataSet);
+  	outfile.open(outputDataset.c_str());
+	inputStream.open(inputDataSet.c_str());
 	if(inputStream.is_open()) {
 		string line;
 		while(!inputStream.eof()) {

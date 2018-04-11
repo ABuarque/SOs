@@ -10,6 +10,7 @@
 #include <sstream>
 #include <cmath>
 #include <iterator>
+#include "utils.h"
 
 using namespace std;
 
@@ -68,7 +69,7 @@ void sequenceSetEntryPoint() {
 		while(isTryingToGetInput) {
 			try {
 				getline(cin, input);
-				option = stoi(input);
+				option = stringToLong(input);
 				isTryingToGetInput = false;
 			} catch(...) {
 				system("clear || cls");
@@ -132,8 +133,8 @@ void insertRecord() {
 	getchar();
 	Record* givenRecord = new Record(zipCode, state, county, placeName, latitute, longitude);
 	DEBUG cout << givenRecord->toString();
-	sequenceSet->addRecord(givenRecord);
-	appendRecord(givenRecord, "proper_data_set.csv");
+	sequenceSet->addRecord(givenRecord); //memoria  
+	appendRecord(givenRecord, "proper_data_set.csv"); // disco
 	//sequenceSet = bufferizeDataSet("proper_data_set.csv");
 }
 
@@ -285,7 +286,7 @@ void displaySpecificField() {
 		while(isTryingToGetInput) {
 			try {
 				getline(cin, fieldName);
-				field = stoi(fieldName);
+				field = stringToLong(fieldName);
 				isTryingToGetInput = false;
 			} catch(...) {
 				cout << "Type online numbers: ";
