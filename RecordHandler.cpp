@@ -8,6 +8,7 @@
 #include <sstream>
 #include <cmath>
 #include <iterator>
+#include "utils.h"
 
 using namespace std;
 
@@ -112,24 +113,24 @@ double parseFloatingPointString(string decimalString, string floatingPointString
     int digitsOfStringNumber = 0;
 
     removeSubstrings(decimalString, pattern);
-    double properNumber = stod(decimalString);
+    double properNumber = stringToFloat(decimalString);
 
 	if(properNumber >= 0) {
 		floatingPointerStringPart = floatingPointString.size(); 
-		digitsOfStringNumber = digitsOfNumber(stod(floatingPointString));
+		digitsOfStringNumber = digitsOfNumber(stringToFloat(floatingPointString));
 		if(floatingPointerStringPart == digitsOfStringNumber)
-			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber);
+			properNumber += stringToFloat(floatingPointString) / getRightValue(digitsOfStringNumber);
 		else
-			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber + 1);
+			properNumber += stringToFloat(floatingPointString) / getRightValue(digitsOfStringNumber + 1);
 	} else {
 		properNumber = abs(properNumber);
 		
 		floatingPointerStringPart = floatingPointString.size(); 
-		digitsOfStringNumber = digitsOfNumber(stod(floatingPointString));
+		digitsOfStringNumber = digitsOfNumber(stringToFloat(floatingPointString));
 		if(floatingPointerStringPart == digitsOfStringNumber)
-			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber);
-		else
-			properNumber += stod(floatingPointString) / getRightValue(digitsOfStringNumber + 1);
+			properNumber += stringToFloat(floatingPointString) / getRightValue(digitsOfStringNumber);
+	else
+			properNumber += stringToFloat(floatingPointString) / getRightValue(digitsOfStringNumber + 1);
 
 		properNumber = properNumber * (-1); 
 	}
@@ -138,7 +139,7 @@ double parseFloatingPointString(string decimalString, string floatingPointString
 
 Record* csvRecordParser(string recordStateAsCSV) {
 	vector<string> parts = split(recordStateAsCSV, ',');
-	long zipCode = stol(parts[0]);
+	long zipCode = stringToLong(parts[0]);
 	string placeName = parts[1];
 	string state = parts[2];
 	string county = parts[3];
