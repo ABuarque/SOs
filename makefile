@@ -1,6 +1,6 @@
 CC = g++ 
-CXXFLAGS=-g -Wall -std=c++11 -I. -W -Wall 
-LIBS = -lm -std=c++11
+CXXFLAGS=-g -Wall -I. -W -Wall 
+LIBS = -lm 
 DEPS = $(wildcard *.h)
 SRC = $(wildcard *.cpp)
 OBJ= $(SRC:.cpp=.o)
