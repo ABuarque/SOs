@@ -21,4 +21,13 @@ long stringToLong(std::string cLikeString);
  */
 float stringToFloat(std::string cLikeString);
 
+/**
+ * It gets a int number and parses it
+ * into a c like string.
+ *
+ * @param a long number
+ * @return a c like string
+ */
+char* intToString(int longNumber);
+
 #endif
