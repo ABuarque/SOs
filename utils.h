@@ -30,4 +30,13 @@ float stringToFloat(std::string cLikeString);
  */
 char* intToString(int longNumber);
 
+/**
+ * It gets a double and parses it into 
+ * a c like string.
+ *
+ * @param a double number
+ * @return a c like string
+ */
+char* doubleToString(double doubleNumber);
+
 #endif

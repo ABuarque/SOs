@@ -23,3 +23,9 @@ char* intToString(int longNumber) {
 	sprintf(string, "%d", longNumber);
 	return string;
 }
+
+char* doubleToString(double doubleNumber) {
+	char* buffer = (char*) malloc(sizeof(char) * 50);
+	snprintf(buffer, 50, "%lf", doubleNumber);
+	return buffer;
+}
