@@ -173,6 +173,7 @@ void modifyFieldInRecord() {
 			getchar();
 			recordToChange = sequenceSet->queryRecordByZipCode(zipCode);
 		}
+		DEBUG cout << recordToChange->toString();
 		cout << "Type what you want to change: \n";
 		cout << "\t1 Place name" << endl;
 		cout << "\t2 State" << endl;
@@ -184,8 +185,6 @@ void modifyFieldInRecord() {
 		cin >> input;
 		getchar();
 
-		sequenceSet->removeRecordByZipCode(zipCode);
-
 		string value;
 		double localizationValue;
 
@@ -194,33 +193,28 @@ void modifyFieldInRecord() {
 				cout << "Type new place name: ";
 				getline(cin, value);
 				recordToChange->setPlaceName(value);
-				sequenceSet->addRecord(recordToChange);
 				break;
 			case 2:
 				cout << "Type new state: ";
 				getline(cin, value);
 				recordToChange->setState(value);
-				sequenceSet->addRecord(recordToChange);
 				break;
 			case 3:	
 				cout << "Type new county: ";
 				getline(cin, value);
 				recordToChange->setCounty(value);
-				sequenceSet->addRecord(recordToChange);
 				break;
 			case 4:
 				cout << "Type new Latitude: ";
 				cin >> localizationValue;
 				getchar();
 				recordToChange->setLatitude(localizationValue);
-				sequenceSet->addRecord(recordToChange);
 				break;
 			case 5:
 				cout << "Type new Longitude: ";
 				cin >> localizationValue;
 				getchar();
 				recordToChange->setLongitude(localizationValue);
-				sequenceSet->addRecord(recordToChange);
 				break;
 		}
 
