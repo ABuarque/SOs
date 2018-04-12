@@ -163,5 +163,6 @@ void cleanDataSet(string inputDataSet, string outputDataset) {
 		}
 	}
 
+	inputStream.close();
 	outfile.close();
 }
