@@ -1,5 +1,6 @@
 #include "App.h"
 #include "RecordHandler.h"
+#include "Record.h"
 
 using namespace std;
 
